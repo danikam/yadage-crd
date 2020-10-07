@@ -76,6 +76,7 @@ kubectl create namespace yadage
 cd helm
 helm install metacontroller
 helm install yadage --set crdctrl_image=danikam/crdctrl:latest  # replace danikam/crdctrl:latest with the image you pushed to docker hub
+cd ..
 
 # Check that the controller pod is running
 kubectl get pods -n yadage
