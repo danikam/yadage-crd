@@ -92,7 +92,7 @@ Secrets need to be added to provide the recast client authentication credentials
 Edit the `data: [...]` field in `crd/hepauth_secret.yml` with a base64-encoded kinit initialization of the form `echo 'BibuSabi4'|kinit recast@CERN.CH`. To do so, replace `BibuSabi4` and `recast` with the password and username, respectively, of the CERN account you want to use for access, and base-64 encode the whole thing as follows:
 
 ```bash
-printf "echo 'phonypassword'|kinit recast@cern.ch"|base64
+printf "echo 'phonypassword'|kinit recast@CERN.CH"|base64
 ```
 which will output 
 
