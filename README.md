@@ -43,9 +43,9 @@ cd yadage-crd
 Build the `crdctrl` image and push it to your personal docker hub:
 
 ```bash
-docker login
-docker build -t danikam/crdctrl:latest -f images/crdctrl/Dockerfile images/crdctrl
-docker push danikam/crdctrl:latest
+sudo docker login
+sudo docker build -t danikam/crdctrl:latest -f images/crdctrl/Dockerfile images/crdctrl
+sudo docker push danikam/crdctrl:latest
 ```
 
 ## 3. Set up yadage
@@ -55,6 +55,7 @@ docker push danikam/crdctrl:latest
 curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.19.0/bin/linux/amd64/kubectl
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | sudo bash
 
 # Set up clusterrolebinding
 kubectl create clusterrolebinding permissive-binding --clusterrole=cluster-admin --user=admin --user=kubelet --group=system:serviceaccounts
