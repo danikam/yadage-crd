@@ -15,7 +15,7 @@ Follow the instructions in the [Container Quickstart Guide](https://clouddocs.we
 3. Log onto lxplus-cloud, and source your openstack RC file to get access to your personal openstack project via the openstack API:
 
 ```bash
-ssh damacdon@lxplus.cern.ch
+ssh damacdon@lxplus-cloud.cern.ch
 source my-openstack-rc.sh
 ```
 
