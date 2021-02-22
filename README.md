@@ -16,7 +16,7 @@ Follow the instructions in the [Container Quickstart Guide](https://clouddocs.we
 
 ```bash
 ssh damacdon@lxplus-cloud.cern.ch
-source my-openstack-rc.sh
+source ATLAS_RECAST_Container_Pilot_openrc.sh
 ```
 
 4. Create a kubernetes cluster on your openstack project following the [quickstart instructions](https://clouddocs.web.cern.ch/containers/quickstart.html):
@@ -32,7 +32,13 @@ $(openstack coe cluster config mykubcluster)
 
 ## 2. Clone yadage-crd and build `crdctrl` image
 
-Log onto the master node of your cluster using the IP address shown on openstack at https://openstack.cern.ch/project/instances/ (you can also get the master node IP directly with `openstack coe cluster show recast-cluster | grep master_addresses`). Clone this git repo
+Log onto the master node of your cluster using the IP address shown on openstack at https://openstack.cern.ch/project/instances/. To list available clusters:
+
+```bash
+openstack coe cluster list
+```
+
+You can then get the master node IP directly with `openstack coe cluster show recast-cluster | grep master_addresses`. `ssh` onto the master node and clone this git repo:
 
 ```bash
 ssh core@188.185.86.174
@@ -83,6 +89,14 @@ kubectl get pods -n yadage
 
 # Create a PVC for CERN storage
 kubectl create -f crd/pvc_cern.yml 
+```
+
+Note: the storage space can be cleared out by re-creating the pvc as follows:
+
+```bash
+kubectl delete -f crd/pvc_cern.yml
+kubectl patch pvc yadagedata -p '{"metadata":{"finalizers": []}}' --type=merge
+kubectl create -f crd/pvc_cern.yml
 ```
 
 ## 4. Add secrets
