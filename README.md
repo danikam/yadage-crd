@@ -133,4 +133,22 @@ Test out some of the sample workflows located in the `examples` directory, eg.
 kubectl create -f examples/wflow_mg.yml
 ```
 
+## 6. Deleting workflows
 
+To list all workflows on the cluster:
+
+```bash
+kubectl get workflow
+```
+
+To delete a particular workflow (eg. `recast-a4da6190`):
+
+```bash
+kubectl delete workflow recast-a4da6190
+```
+
+To delete all workflows starting with `recast-`:
+
+```bash
+kubectl get workflow | grep recast- | awk '{print $1}' | xargs kubectl delete workflow
+```
